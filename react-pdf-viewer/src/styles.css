@@ -1,0 +1,154 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #040404;
+  overflow: hidden;
+  width: 100%;
+  z-index: 1;
+}
+
+h4 {
+  text-align: left;
+  margin-left: 40px;
+}
+
+hr {
+  border-top: 2px dotted #3f51b5;
+}
+
+button {
+  margin-right: 10px;
+  background: #3f51b5;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 1px #ccc;
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* For pdf */
+.react-pdf__Page {
+  margin-top: 0px;
+  /* height: 100vh; */
+}
+.react-pdf__Document {
+}
+.react-pdf__Page__textContent {
+  /* border: 1px solid darkgrey;
+  height: 100vh !important; */
+  /* height: 1200px !important; */
+  /* box-shadow: 5px 5px 5px 1px #ccc;
+  border-radius: 5px; */
+}
+
+.react-pdf__Page__annotations.annotationLayer {
+  /* padding: 20px; */
+}
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  z-index: 0 !important;
+}
+
+/* For all pages */
+.all-page-container {
+  height: 100%;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+#components-layout-demo-top .logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+.ant-row-rtl #components-layout-demo-top .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+.header--pin {
+  background: linear-gradient(
+    180deg,
+    #dc0914,
+    #dc0914 6%,
+    #000 0,
+    rgba(220, 9, 20, 0)
+  );
+  z-index: 1001;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+
+.ant-slider-rail {
+  height: 14px;
+  border-radius: 6px;
+  background-color: transparent;
+  border: 1px solid white;
+  opacity: 0.2;
+}
+.ant-slider-track {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #fff, hsla(0, 0%, 100%, 0.5));
+}
+.ant-slider-step {
+  height: 14px;
+  background-color: transparent;
+  opacity: 1;
+}
+.ant-slider-handle {
+  width: 36px;
+  height: 36px;
+  margin-top: -12px;
+}
+.footer--pin {
+  background: linear-gradient(
+    0deg,
+    #dc0914,
+    #dc0914 8%,
+    #000 0,
+    rgba(220, 9, 20, 0)
+  );
+  /*
+  linear-gradient(
+    rgba(220, 9, 20, 0),
+    #000 0,
+    #dc0914 6%,
+    #dc0914,
+    180deg
+  ); */
+  z-index: 1;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.ant-drawer-content {
+  background: linear-gradient(180deg,#000,rgba(0,0,0,.5) 70%,transparent);
+
+  z-index: 999;
+}
+#buttonMenu {
+  z-index: 561561561561;
+  right: 0;
+  position: absolute;
+}
