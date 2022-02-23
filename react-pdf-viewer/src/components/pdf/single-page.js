@@ -51,9 +51,9 @@ export default function SinglePage(props) {
         // console.log(elmnt["width"]);
         // console.log(elmnt["height"]);
         let radiopadding = elmnt.offsetHeight / elmnt.offsetWidth;
-        // let newheight = width * radiopadding;
+        let newheight = width * radiopadding;
 
-        let newheight = (width * 22) / 17;
+        // let newheight = (width * 22) / 17;
         let padding = height - newheight;
         let newpadding = padding / 2 + "px";
 
@@ -116,8 +116,8 @@ export default function SinglePage(props) {
         style={{
           width: width,
           height: height,
-          paddingTop: paddingItem,
-          paddingBottom: paddingItem,
+          paddingTop: 50
+
         }}
       >
         <div>
@@ -142,7 +142,7 @@ export default function SinglePage(props) {
                 <Page
                   pageNumber={pageNumber}
                   width={width < 768 ? width : 0}
-                  height={height}
+                  height={height - 100}
                 />
               )}
             </>

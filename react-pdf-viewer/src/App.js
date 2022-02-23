@@ -24,8 +24,10 @@ import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const samplePDF = blackout2pdf;
+// const samplePDF = blackout2pdf;
 export default function App() {
+  const [hiddenBottomMenu, setHiddenBottomMenu] = useState(true);
+  const [samplePDF, setsamplePDF] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [loading, setloading] = useState(true);
   const [visible, setVisible] = useState(false);
@@ -130,11 +132,18 @@ export default function App() {
     setViewStyle(e.target.value);
     setVisible(false);
   };
-  // useEffect(() => {
-  //   if (numPages) {
-  //     setloading(false);
-  //   }
-  // }, [numPages]);
+  useEffect(() => {
+    let params = new URLSearchParams(window.location.search);
+    let url_pdf = params.get("url_pdf"); // is the string "Jonathan"
+    let view = params.get("view");
+    if (view === "Vertical" || view === "Horizontal") {
+      setViewStyle(view);
+    } else {
+      setViewStyle("Horizontal");
+    }
+
+    setsamplePDF(url_pdf);
+  }, []);
 
   return (
     <div
@@ -143,6 +152,7 @@ export default function App() {
       onTouchMove={(touchMoveEvent) => handleTouchMove(touchMoveEvent)}
       onTouchEnd={() => handleTouchEnd()}
     >
+      {/**
       <div
         className="header--pin"
         style={{ textAlign: "center", opacity: "1", color: "red" }}
@@ -167,54 +177,62 @@ export default function App() {
           </Col>
         </Row>
       </div>
+      **/}
+
+      {viewStyle == "Vertical" && (
+        <div onClick={() => setHiddenBottomMenu(!hiddenBottomMenu)}>
+          <AllPagesPDFViewer
+            pdf={samplePDF}
+            pageNumber={pageNumber}
+            onDocumentLoadSuccess={onDocumentLoadSuccess}
+            numPages={numPages}
+            loading={loading}
+            setPageNumber={setPageNumber}
+            viewStyle={viewStyle}
+          />
+        </div>
+      )}
 
       {viewStyle == "Horizontal" && (
-        <SinglePagePDFViewer
-          pdf={samplePDF}
-          pageNumber={pageNumber}
-          onDocumentLoadSuccess={onDocumentLoadSuccess}
-          numPages={numPages}
-          setloading={setloading}
-          loading={loading}
-          viewStyle={viewStyle}
-        />
-      )}
-      {viewStyle == "Vertical" && (
-        <AllPagesPDFViewer
-          pdf={samplePDF}
-          pageNumber={pageNumber}
-          onDocumentLoadSuccess={onDocumentLoadSuccess}
-          numPages={numPages}
-          loading={loading}
-          setPageNumber={setPageNumber}
-          viewStyle={viewStyle}
-        />
+        <div onClick={() => setHiddenBottomMenu(!hiddenBottomMenu)}>
+          <SinglePagePDFViewer
+            pdf={samplePDF}
+            pageNumber={pageNumber}
+            onDocumentLoadSuccess={onDocumentLoadSuccess}
+            numPages={numPages}
+            setloading={setloading}
+            loading={loading}
+            viewStyle={viewStyle}
+          />
+        </div>
       )}
 
-      <div
-        className="footer--pin"
-        style={{ textAlign: "center", opacity: "1", color: "White" }}
-      >
-        <Row>
-          <Col flex="auto" className="p-4">
-            {" "}
-            <Slider
-              reverse
-              min={1}
-              max={numPages}
-              step={1}
-              onChange={changePage}
-              value={typeof pageNumber === "number" ? pageNumber : 0}
-            />
-          </Col>
-          <Col flex="100px" style={{ paddingTop: "30px" }}>
-            <Title style={{ color: "white" }} level={5}>
-              <span style={{ color: "#ffffff" }}>{pageNumber} /</span>{" "}
-              <span style={{ color: "#bfbfbf" }}>{numPages}</span>
-            </Title>
-          </Col>
-        </Row>
-      </div>
+      {hiddenBottomMenu && (
+        <div
+          className="footer--pin"
+          style={{ textAlign: "center", opacity: "1", color: "White" }}
+        >
+          <Row>
+            <Col flex="auto" className="p-4">
+              {" "}
+              <Slider
+                reverse
+                min={1}
+                max={numPages}
+                step={1}
+                onChange={changePage}
+                value={typeof pageNumber === "number" ? pageNumber : 0}
+              />
+            </Col>
+            <Col flex="100px" style={{ paddingTop: "30px" }}>
+              <Title style={{ color: "white" }} level={5}>
+                <span style={{ color: "#ffffff" }}>{pageNumber} /</span>{" "}
+                <span style={{ color: "#bfbfbf" }}>{numPages}</span>
+              </Title>
+            </Col>
+          </Row>
+        </div>
+      )}
 
       {/**
   <hr />

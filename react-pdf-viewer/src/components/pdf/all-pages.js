@@ -76,7 +76,7 @@ export default function Allpages(props) {
         // console.log(currentpostion + elmnt_page.offsetHeight)
         currentpostion = currentpostion + pageHeight+100;
         let currentPage = (currentpostion / pageHeight).toFixed(0);
-        setPageNumber(currentPage);
+        setPageNumber(parseInt(currentPage));
         // executeScroll(currentPage);
       } else {
         setPageNumber(1);
